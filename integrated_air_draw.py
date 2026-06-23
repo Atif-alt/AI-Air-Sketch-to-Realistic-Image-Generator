@@ -6,7 +6,7 @@ from PIL import Image
 from diffusers import StableDiffusionControlNetPipeline, ControlNetModel
 import torch
 
-print("Loading AI Models... (takes a few seconds)")
+print("Loading AI Models...")
 
 controlnet = ControlNetModel.from_pretrained(
     "lllyasviel/sd-controlnet-scribble",
@@ -122,17 +122,16 @@ while True:
             num_inference_steps=10
         ).images[0]
 
-       result_path = os.path.abspath("outputs/result.png")
+        result_path = os.path.abspath("outputs/result.png")
 
-             result_img.save(result_path)
+        result_img.save(result_path)
 
-              print(f"Saved: {result_path}")
+        print(f"Saved: {result_path}")
 
-                result_path = os.path.abspath("outputs/result.png")
-
-                print(f"Saved: {result_path}")
-
-             os.startfile(result_path)
+        try:
+            os.startfile(result_path)
+        except:
+            pass
 
     elif key == ord('q'):
         break
